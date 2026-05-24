@@ -1239,8 +1239,8 @@
 				{ name: "Toathmor 001 Mo", price: "$ 25", type: "moul" }, 
 				{ name: "Toathmor 001 Smo", price: "$ 25", type: "moul" }, 
 				{ name: "Toathmor 001 Smooth", price: "$ 25", type: "chreang" },
-				{ name: "Toathmor Primary.ttf", price: "$ 20", type: "chreang" },
-				{ name: "Toathmor Primary Medium.ttf", price: "$ 20", type: "chreang" },
+				{ name: "Toathmor Primary", price: "$ 20", type: "chreang" },
+				{ name: "Toathmor Primary Medium", price: "$ 20", type: "chreang" },
 				{ name: "Toathmor Aphiruh", price: "សាកល្បង", type: "chreang" }
 			];
 
@@ -1658,6 +1658,78 @@
 				toast.classList.add("show");
 				setTimeout(() => toast.classList.remove("show"), 2500);
 			}
+      function toggleSelectFont(index, name, checkboxEl) {
+
+  const card = document.getElementById(`font-${index}`);
+  const fontData = fontsData[index - 1];
+
+  // យកតម្លៃលេខ
+  let cleanPrice = 0;
+
+  if (fontData.price.includes("$")) {
+    cleanPrice = parseFloat(
+      fontData.price.replace("$", "").trim()
+    ) || 0;
+  }
+
+  if (checkboxEl.checked) {
+
+    // បញ្ចូលទៅ selectedFonts
+    if (!selectedFonts.some(f => f.index === index)) {
+
+      selectedFonts.push({
+        index,
+        name,
+        price: cleanPrice
+      });
+
+    }
+
+    if (card) {
+      card.classList.add("selected");
+    }
+
+  } else {
+
+    // លុបចេញ
+    selectedFonts = selectedFonts.filter(
+      f => f.index !== index
+    );
+
+    if (card) {
+      card.classList.remove("selected");
+    }
+  }function updateMultiSelectBar() {
+
+  const bar =
+    document.getElementById("multiSelectBar");
+
+  const countTxt =
+    document.getElementById("multiSelectCount");
+
+  // គណនាតម្លៃសរុប
+  let totalPrice = selectedFonts.reduce(
+    (sum, item) => sum + item.price,
+    0
+  );
+
+  if (selectedFonts.length > 0) {
+
+    countTxt.innerHTML =
+      `បានជ្រើសរើស ${selectedFonts.length} ពុម្ព
+      <br>
+      💰 សរុប: $${totalPrice}`;
+
+    bar.classList.add("show");
+
+  } else {
+
+    bar.classList.remove("show");
+  }
+}
+
+  updateMultiSelectBar();
+}
 
 			renderFonts(fontsData);
 		</script>
