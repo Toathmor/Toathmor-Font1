@@ -1,0 +1,12 @@
+<style>
+@font-face {
+  font-family: 'Toathmor';
+  src: url('./Toathmor-Primary.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+  font-family:'Toathmor', sans-serif;
+}
+</style>
