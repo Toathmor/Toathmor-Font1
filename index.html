@@ -1124,9 +1124,8 @@
 			let activeFontName = "";
 			let selectedFonts = [];
 
-			const allKhmerSampleText = `ក្ក ខ្ខ គ្គ ឃ្ឃ ង្ង​   ច្ច ឆ្ឆ ជ្ជ ឈ្ឈ ញ្ញ​ (ញ, ក្ញ)​\nដ្ដ ឋ្ឋ ឌ្ឌ ឍ្ឍ ណ្ណ​   ត្ត ថ្ថ ទ្ទ ធ្ធ ន្ន \nប្ប ផ្ផ ព្ព ភ្ភ ម្ម​ យ្យ រ្រ ល្ល វ្វ ឝ្ឝ ឞ្ឞ ស្ស ហ្ហ ឡ អ្អ\nអ អា ឥ ឦ ឧ ឨ ឩ ឪ ឫ ឬ ឭ ឮ ឯ ឰ ឱ ឲ ឳ\nកា កិ កី កឹ កឺ​ កុ កូ កួ​ កើ កឿ កៀ​ កេ កែ កៃ​ \nកោ កៅ​ ​កុំ កំ​ កះ កៈ​ ក៉ ក៊ ក់ ក៌ ក៍ ក៎  ក៏ ក័ ក៑\n។៕៘ ៗ ៛៙៚០ ១ ២ ៣ ៤ ៥ ៦ ៧ ៨ ៩`;
+			const allKhmerSampleText = `ក្ក ខ្ខ គ្គ ឃ្ឃ ង្ង​   ច្ច ឆ្ឆ ជ្ជ ឈ្ឈ ញ្ញ​ (ញ, ក្ញ)​\nដ្ដ ឋ្ឋ ឌ្ឌ ឍ្ឍ ណ្ណ​   ត្ត ថ្ថ ទ្ទ ធ្ធ ន្ន \nប្ប ផ្ផ ព្ព ភ្ភ ម្ម​ យ្យ រ្រ ល្ល វ្វ ឝ្ឝ ឞ្ឞ ស្ស ហ្ហ ឡ អ្អ\nអ អា ឥ ឦ ឧ ឨ ឩ ឪ ឫ ឬ ឭ ឮ ឯ ឰ ឱ ឲ ឳ\nកា កិ កី កឹ កឺ​ កុ កូ កួ​ កើ កឿ កៀ​ កេ កែ កៃ​ \nកោ កៅ​ ​កុំ កំ​ កះ កះ​ ក៉ ក៊ ក់ ក៌ ក៍ ក៎  ក៏ ក័ ក៑\n។៕៘ ៗ ៛៙៚០ ១ ២ ៣ ៤ ៥ ៦ ៧ ៨ ៩`;
 
-			// បានដក properties 'date' ចេញពីគ្រប់ទិន្នន័យពុម្ពអក្សរទាំងអស់
 			const fontsData = [
 				{ name: "Toathmor Komaradthan", price: "$ 15", type: "moul" }, 
 				{ name: "Toathmor Sangahak", price: "$ 30", type: "moul" }, 
@@ -1339,7 +1338,6 @@
 				document.getElementById("counterContainer").innerText = `បង្ហាញជូនចំនួន ${data.length} ពុម្ពអក្សរ`;
 			}
 
-			// មុខងារបើកផ្ទាំងបង្ហាញព័ត៌មានលម្អិតពុម្ពអក្សរ (បានលុបការបង្ហាញកាលបរិច្ឆេទ)
 			function openInfoPopup(index) {
 				const font = fontsData[index - 1];
 				if (!font) return;
@@ -1359,27 +1357,72 @@
 			}
 
 			function toggleSelectFont(index, name, checkboxEl) {
+
 				const card = document.getElementById(`font-${index}`);
-				if (checkboxEl.checked) {
-					if (!selectedFonts.some(f => f.index === index)) {
-						selectedFonts.push({ index, name });
-					}
-					if (card) card.classList.add("selected");
-				} else {
-					selectedFonts = selectedFonts.filter(f => f.index !== index);
-					if (card) card.classList.remove("selected");
+				const fontData = fontsData[index - 1];
+
+				let cleanPrice = 0;
+
+				if (fontData.price.includes("$")) {
+					cleanPrice = parseFloat(
+					fontData.price.replace("$", "").trim()
+					) || 0;
 				}
+
+				if (checkboxEl.checked) {
+
+					if (!selectedFonts.some(f => f.index === index)) {
+
+					selectedFonts.push({
+						index,
+						name,
+						price: cleanPrice
+					});
+
+					}
+
+					if (card) {
+					card.classList.add("selected");
+					}
+
+				} else {
+
+					selectedFonts = selectedFonts.filter(
+					f => f.index !== index
+					);
+
+					if (card) {
+					card.classList.remove("selected");
+					}
+				}
+
 				updateMultiSelectBar();
 			}
 
 			function updateMultiSelectBar() {
-				const bar = document.getElementById("multiSelectBar");
-				const countTxt = document.getElementById("multiSelectCount");
-				
+
+				const bar =
+					document.getElementById("multiSelectBar");
+
+				const countTxt =
+					document.getElementById("multiSelectCount");
+
+				let totalPrice = selectedFonts.reduce(
+					(sum, item) => sum + item.price,
+					0
+				);
+
 				if (selectedFonts.length > 0) {
-					countTxt.innerText = `បានជ្រើសរើស: ${selectedFonts.length} ពុម្ព`;
+
+					countTxt.innerHTML =
+					`បានជ្រើសរើស ${selectedFonts.length} ពុម្ព
+					<br>
+					💰 សរុប: $${totalPrice}`;
+
 					bar.classList.add("show");
+
 				} else {
+
 					bar.classList.remove("show");
 				}
 			}
@@ -1658,78 +1701,6 @@
 				toast.classList.add("show");
 				setTimeout(() => toast.classList.remove("show"), 2500);
 			}
-      function toggleSelectFont(index, name, checkboxEl) {
-
-  const card = document.getElementById(`font-${index}`);
-  const fontData = fontsData[index - 1];
-
-  // យកតម្លៃលេខ
-  let cleanPrice = 0;
-
-  if (fontData.price.includes("$")) {
-    cleanPrice = parseFloat(
-      fontData.price.replace("$", "").trim()
-    ) || 0;
-  }
-
-  if (checkboxEl.checked) {
-
-    // បញ្ចូលទៅ selectedFonts
-    if (!selectedFonts.some(f => f.index === index)) {
-
-      selectedFonts.push({
-        index,
-        name,
-        price: cleanPrice
-      });
-
-    }
-
-    if (card) {
-      card.classList.add("selected");
-    }
-
-  } else {
-
-    // លុបចេញ
-    selectedFonts = selectedFonts.filter(
-      f => f.index !== index
-    );
-
-    if (card) {
-      card.classList.remove("selected");
-    }
-  }
-
-  updateMultiSelectBar();
-}function updateMultiSelectBar() {
-
-  const bar =
-    document.getElementById("multiSelectBar");
-
-  const countTxt =
-    document.getElementById("multiSelectCount");
-
-  // គណនាតម្លៃសរុប
-  let totalPrice = selectedFonts.reduce(
-    (sum, item) => sum + item.price,
-    0
-  );
-
-  if (selectedFonts.length > 0) {
-
-    countTxt.innerHTML =
-      `បានជ្រើសរើស ${selectedFonts.length} ពុម្ព
-      <br>
-      💰 សរុប: $${totalPrice}`;
-
-    bar.classList.add("show");
-
-  } else {
-
-    bar.classList.remove("show");
-  }
-}
 
 			renderFonts(fontsData);
 		</script>
