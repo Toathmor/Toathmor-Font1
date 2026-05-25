@@ -29,7 +29,8 @@
 
 		<style>
 			:root {
-				--bg-main: #f8fafc;
+				/* --- កែប្រែផ្ទៃក្រោយចម្បងទៅជាពណ៌ខៀវស្រាល (Light Blue / Pastel Blue) --- */
+				--bg-main: #f0f8ff; /* ពណ៌ AliceBlue */
 				--bg-card: #ffffff;
 				--text-main: #0f172a;
 				--text-muted: #64748b;
@@ -37,16 +38,15 @@
 				--accent-light: rgba(212, 175, 55, 0.08);
 				--telegram: #0088cc;
 				--facebook: #1877f2;
-				--phone: #10b981;
-				--border: #e2e8f0;
-				--shadow: rgba(148, 163, 184, 0.08);
+				--border: #e0f0ff; /* កែពណ៌បន្ទាត់ឱ្យស៊ីជាមួយផ្ទៃក្រោយខៀវ */
+				--shadow: rgba(0, 136, 204, 0.04); /* ប្តូរស្រមោលឱ្យដេញពណ៌ខៀវបន្តិច */
 				--danger: #ef4444; 
 				--danger-light: rgba(239, 68, 68, 0.1);
 				
-				--selector-bg: rgba(241, 245, 249, 0.6);
+				--selector-bg: rgba(225, 240, 255, 0.7);
 				--opt-active-bg: #ffffff;
 				--opt-active-text: #0f172a;
-				--img-placeholder: #f1f5f9;
+				--img-placeholder: #f5faff;
 			}
 
 			[data-theme="dark"] {
@@ -155,7 +155,7 @@
 
 			.contacts-bar {
 				display: flex;
-				gap: 6px;
+				gap: 8px;
 				margin-top: 16px;
 				border-top: 1px solid rgba(255, 255, 255, 0.1);
 				padding-top: 14px;
@@ -166,14 +166,14 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				gap: 4px;
+				gap: 6px;
 				background: rgba(255, 255, 255, 0.06);
 				color: #ffffff;
 				text-decoration: none;
-				font-size: 11px;
+				font-size: 13px;
 				font-weight: 500;
-				padding: 8px 4px;
-				border-radius: 10px;
+				padding: 10px 4px;
+				border-radius: 12px;
 				border: 1px solid rgba(255, 255, 255, 0.05);
 				transition: all 0.2s;
 				white-space: nowrap;
@@ -1035,7 +1035,6 @@
 				<div class="contacts-bar">
 					<a href="https://t.me/Yong_Yeang" target="_blank" class="contact-link">✈️ Telegram</a>
 					<a href="https://m.me/ToathmorKH" target="_blank" class="contact-link">🔵 Facebook</a>
-          
 				</div>
 			</header>
 
@@ -1049,7 +1048,7 @@
 						<input type="text" id="previewInput" placeholder="វាយអត្ថបទសាកល្បងនៅទីនេះ..." oninput="filterData()" />
 					</div>
 					<button class="action-popup-btn" style="width: 48px; font-size: 18px;" onclick="openHelpPopup()" title="មើលគំរូអក្សរតម្រួត">❓</button>
-					<a href="តារាងពុម្ពរអក្សរខ្មែរ_តោថ្ម.pdf" target="_blank" class="action-popup-btn" style="padding: 0 12px; font-size: 12px; text-decoration: none;" title="បើកមើលតារាងកាតាឡុក PDF រួម">📄 PDF រួម</a>
+					<a href="https://docs.google.com/viewer?url=https://drive.google.com/uc?id=1KvIfY1qbsufIlY3MBi1Uz3f57Y69c7dq&embedded=true" target="_blank" class="action-popup-btn" style="padding: 0 12px; font-size: 12px; text-decoration: none;" title="បើកមើលតារាងកាតាឡុក PDF រួម">📄 PDF រួម</a>
 				</div>
 
 				<div class="slider-zone">
@@ -1227,9 +1226,10 @@
 			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
 			let isCompareMode = false;
 
-			const allKhmerSampleText = `ក្ក ខ្ខ គ្គ ឃ្ឃ ង្ង​   ច្ច ឆ្ឆ ជ្ជ ឈ្ឈ ញ្ញ​ (ញ, ក្ញ)​\nដ្ដ ឋ្ឋ ឌ្ឌ ឍ្ឍ ណ្ណ​   ត្ត ថ្ថ ទ្ទ ធ្ធ ន្ន \nប្ប ផ្ផ ព្ព ភ្ភ ម្ម​ យ្យ រ្រ ល្ល វ្វ ឝ្ឝ ឞ្ឞ ស្ស ហ្ហ ឡ អ្អ\nអ អា ឥ ឦ ឧ ឨ ឩ ឪ ឫ ឬ ឭ ឮ ឯ ឰ ឱ ឲ ឳ\nកា កិ កី កឹ កឺ​ កុ កូ កួ​ កើ កឿ កៀ​ កេ កែ កៃ​ \nកោ កៅ​ ​កុំ កំ​ កះ កះ​ ក៉ ក៊ ក់ ក៌ ក៍ ក៎  ក៏ ក័ ក៑\n។៕៘ ៗ ៛៙៚០ ១ ២ ៣ ៤ ៥ ៦ ៧ ៨ ៩`;
+			const allKhmerSampleText = `ក្ក ខ្ខ គ្គ ឃ្ឃ ង្ង​   ច្ច ឆ្ឆ ជ្ជ ឈ្ឈ ញ្ញ​ (ញ, ក្ញ)​\nដ្ដ ឋ្ឋ ឌ្ឌ ឍ្ឍ ណ្ណ​   ត្ត ថ្ថ ទ្ទ ធ្ធ ន្ន \nប្ប ផ្ផ ព្ព ភ្ភ ម្ម​ យ្យ រ្រ ល្ល វ្វ ឝ្ឝ ឞ្ឞ ស្ស ហ្ហ ឡ អ្អ\nអ អា ឥ ឦ ឧ ឨ ឩ ឪ ឫ ឬ ឭ ឮ ឯ ឰ ឱ ឲ ឳ\nកា កិ កី កឹ កឺ​ កុ កូ កួ​ កើ កឿ កៀ​ កេ កែ កៃ​ \nកោ កៅ​ ​កុំ កំ\n។៕៘ ៗ ៛៙៚០ ១ ២ ៣ ៤ ៥ ៦ ៧ ៨ ៩`;
 
-			const globalPdfUrl = "តារាងពុម្ពរអក្សរខ្មែរ_តោថ្ម.pdf";
+			const globalDrivePdfId = "1KvIfY1qbsufIlY3MBi1Uz3f57Y69c7dq";
+			const globalPdfUrl = `https://docs.google.com/viewer?url=https://drive.google.com/uc?id=${globalDrivePdfId}&embedded=true`;
 
 			const fontsData = [
 				{ name: "Toathmor Komaradthan", price: "$ 15", type: "moul" }, 
@@ -1403,13 +1403,11 @@
 					const isChecked = selectedFonts.some(f => f.index === originalIndex) ? "checked" : "";
 					const cardSelectedClass = isChecked ? "selected" : "";
 					
-					// ផ្លាស់ប្តូររូបតំណាង Pin 📍 (មិនទាន់ចុច) និង 📌 (ចុចរួច)
 					const isFav = favoriteFonts.includes(font.name);
 					const favIcon = isFav ? "📌" : "📍";
 					const favActiveClass = isFav ? "active" : "";
 
-					const targetPage = Math.ceil(originalIndex / 16) + 1; 
-					const pdfTargetUrl = `${globalPdfUrl}#page=${targetPage}`;
+					const pdfTargetUrl = globalPdfUrl;
 
 					container.innerHTML += `
 						<div class="font-card ${cardSelectedClass}" id="${cardId}">
@@ -1441,7 +1439,7 @@
 								</div>
 							</div>
 
-							<a href="${pdfTargetUrl}" target="_blank" class="image-container-link" title="ចុចមើលក្នុង PDF ទំព័រទី ${targetPage}">
+							<a href="${pdfTargetUrl}" target="_blank" class="image-container-link" title="ចុចមើលក្នុងតារាងកាតាឡុក PDF">
 								<div class="image-container">
 									<span class="image-error-text">កំពុងផ្ទុករូបភាព...</span>
 									<img class="font-image-sample" src="${imageUrl}" alt="គំរូពុម្ពអក្សរ ${font.name}" onerror="handleImageError(this)">
