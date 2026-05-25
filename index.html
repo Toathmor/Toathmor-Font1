@@ -215,19 +215,24 @@
 				flex: 1;
 				margin-bottom: 0;
 			}
-			.help-popup-btn {
+			
+			.action-popup-btn {
 				background: var(--accent-light);
 				border: 1px solid var(--accent);
 				color: var(--text-main);
-				width: 48px;
 				height: 48px;
 				border-radius: 16px;
 				cursor: pointer;
-				font-size: 18px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 				box-shadow: 0 4px 14px var(--shadow);
+				font-weight: 600;
+				transition: all 0.2s;
+			}
+			.action-popup-btn:active {
+				background: var(--accent);
+				color: white;
 			}
 
 			.input-box input:focus {
@@ -279,12 +284,15 @@
 				background: var(--bg-card);
 				color: var(--text-muted);
 				border: 1px solid var(--border);
-				padding: 9px 18px;
+				padding: 9px 15px;
 				border-radius: 20px;
 				font-size: 12px;
 				font-weight: 500;
 				white-space: nowrap;
 				cursor: pointer;
+				display: flex;
+				align-items: center;
+				gap: 4px;
 			}
 			.tab-btn.active {
 				background: var(--text-main);
@@ -322,6 +330,7 @@
 				display: flex;
 				align-items: flex-start;
 				gap: 10px;
+				flex: 1;
 			}
 
 			.font-checkbox-wrapper {
@@ -347,7 +356,7 @@
 
 			.font-title-clickable {
 				cursor: pointer;
-				display: inline-block;
+				flex: 1;
 			}
 			.font-title {
 				font-weight: 600;
@@ -359,6 +368,19 @@
 			.font-title-clickable:hover .font-title {
 				color: var(--accent);
 				border-bottom-color: var(--accent);
+			}
+
+			.btn-fav {
+				background: transparent;
+				border: none;
+				font-size: 18px;
+				cursor: pointer;
+				padding: 0 4px;
+				color: var(--text-muted);
+				transition: transform 0.2s;
+			}
+			.btn-fav.active {
+				transform: scale(1.15);
 			}
 
 			.badge-new {
@@ -425,7 +447,16 @@
 				font-size: 9px;
 				color: var(--text-muted);
 				opacity: 0.6;
-				font-family: "Kantumruy Pro", sans-serif !important;
+			}
+
+			.image-container-link {
+				display: block;
+				text-decoration: none;
+				cursor: pointer;
+				transition: transform 0.2s ease;
+			}
+			.image-container-link:hover {
+				transform: scale(1.01);
 			}
 
 			.image-container {
@@ -513,13 +544,18 @@
 				border-radius: 20px 20px 0 0;
 				z-index: 1000;
 				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				gap: 12px;
+				flex-direction: column;
+				gap: 10px;
 				transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 			}
 			.multi-select-bar.show {
 				transform: translateX(-50%) translateY(0);
+			}
+			.multi-select-top {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: 100%;
 			}
 			.multi-select-info {
 				display: flex;
@@ -537,22 +573,44 @@
 				font-weight: 500;
 				margin-top: 2px;
 			}
-			.btn-multi-order {
-				background: var(--telegram);
-				color: white;
-				border: none;
-				padding: 12px 20px;
+			.multi-actions-row {
+				display: flex;
+				gap: 8px;
+				width: 100%;
+			}
+			.btn-multi-compare {
+				flex: 1;
+				background: var(--bg-main);
+				color: var(--text-main);
+				border: 1px solid var(--border);
+				padding: 12px;
 				border-radius: 14px;
 				font-size: 13px;
 				font-weight: 600;
 				cursor: pointer;
 				display: flex;
 				align-items: center;
-				gap: 8px;
+				justify-content: center;
+				gap: 6px;
+			}
+			.btn-multi-order {
+				flex: 1.4;
+				background: var(--telegram);
+				color: white;
+				border: none;
+				padding: 12px;
+				border-radius: 14px;
+				font-size: 13px;
+				font-weight: 600;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 6px;
 				box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25);
 			}
 
-			/* Fullscreen Test Modal */
+			/* Fullscreen Test & Compare Modal */
 			.test-modal {
 				position: fixed;
 				top: 0;
@@ -736,6 +794,42 @@
 				user-select: text;
 			}
 
+			/* ផ្ទាំងរចនាបថប្រៀបធៀប Font */
+			.compare-list-scroll {
+				flex: 1;
+				width: 100%;
+				overflow-y: auto;
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+				padding: 4px 0;
+			}
+			.compare-row-card {
+				background: var(--bg-main);
+				border: 1px solid var(--border);
+				border-radius: 16px;
+				padding: 16px;
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+			}
+			.compare-font-meta {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 12px;
+				color: var(--text-muted);
+				font-weight: 600;
+				border-bottom: 1px solid var(--border);
+				padding-bottom: 6px;
+			}
+			.compare-preview-output {
+				color: var(--text-main);
+				word-break: break-all;
+				line-height: 1.5;
+				padding-top: 4px;
+			}
+
 			.modal-footer-actions {
 				display: flex;
 				gap: 8px;
@@ -762,7 +856,7 @@
 			.btn-pdf { background: #ef4444; }   
 			.btn-share { background: #6366f1; } 
 
-			/* --- ផ្ទាំងព័ត៌មានលម្អិតនៃពុម្ពអក្សរ (Font Details Info Popup Style) --- */
+			/* --- ផ្ទាំងព័ត៌មានលម្អិតនៃពុម្ពអក្សរ --- */
 			.info-backdrop {
 				position: fixed;
 				top: 0; left: 0; width: 100%; height: 100%;
@@ -778,7 +872,7 @@
 				background: var(--bg-card);
 				border-radius: 24px;
 				width: 100%;
-				max-width: 360px;
+				max-width: 380px;
 				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 				border: 1px solid var(--border);
 				overflow: hidden;
@@ -814,6 +908,7 @@
 				border-bottom: 1px dashed var(--border);
 				padding-bottom: 8px;
 				font-size: 13px;
+				gap: 10px;
 			}
 			.info-row:last-child {
 				border-bottom: none;
@@ -822,6 +917,7 @@
 			.info-label {
 				color: var(--text-muted);
 				font-weight: 500;
+				white-space: nowrap;
 			}
 			.info-value {
 				color: var(--text-main);
@@ -939,20 +1035,21 @@
 				<div class="contacts-bar">
 					<a href="https://t.me/Yong_Yeang" target="_blank" class="contact-link">✈️ Telegram</a>
 					<a href="https://m.me/ToathmorKH" target="_blank" class="contact-link">🔵 Facebook</a>
-					<a href="tel:015433139" class="contact-link">☎️ 015 433 139</a>
+          
 				</div>
 			</header>
 
 			<div class="sticky-controls">
 				<div class="input-box" data-icon="🔍">
-					<input type="text" id="searchId" placeholder="ស្វែងរកឈ្មោះពុម្ពអក្សរ..." oninput="filterData()" />
+					<input type="text" id="searchId" placeholder="ស្វែងរកឈ្មោះ ឬ លេខលំដាប់ពុម្ពអក្សរ..." oninput="filterData()" />
 				</div>
 				
 				<div class="preview-wrapper">
 					<div class="input-box" data-icon="✍️">
 						<input type="text" id="previewInput" placeholder="វាយអត្ថបទសាកល្បងនៅទីនេះ..." oninput="filterData()" />
 					</div>
-					<button class="help-popup-btn" onclick="openHelpPopup()" title="មើលគំរូអក្សរតម្រួត">❓</button>
+					<button class="action-popup-btn" style="width: 48px; font-size: 18px;" onclick="openHelpPopup()" title="មើលគំរូអក្សរតម្រួត">❓</button>
+					<a href="តារាងពុម្ពរអក្សរខ្មែរ_តោថ្ម.pdf" target="_blank" class="action-popup-btn" style="padding: 0 12px; font-size: 12px; text-decoration: none;" title="បើកមើលតារាងកាតាឡុក PDF រួម">📄 PDF រួម</a>
 				</div>
 
 				<div class="slider-zone">
@@ -962,6 +1059,7 @@
 
 				<div class="tabs">
 					<button class="tab-btn active" onclick="switchTab('all', this)">ទាំងអស់</button>
+					<button class="tab-btn" onclick="switchTab('favorite', this)">📌 បានខ្ទាស់ទុក</button>
 					<button class="tab-btn" onclick="switchTab('moul', this)">អក្សរមូល</button>
 					<button class="tab-btn" onclick="switchTab('chreang', this)">អក្សរជ្រៀង/ត្រង់</button>
 					<button class="tab-btn" onclick="switchTab('hand', this)">អក្សរដៃ</button>
@@ -973,18 +1071,23 @@
 		</div>
 
 		<div class="multi-select-bar" id="multiSelectBar">
-			<div class="multi-select-info">
-				<span class="multi-select-count" id="multiSelectCount">បានជ្រើសរើស: 0 ពុម្ព</span>
-				<span class="multi-select-clear" onclick="clearAllSelections()">✕ លុបការជ្រើសរើសទាំងអស់</span>
+			<div class="multi-select-top">
+				<div class="multi-select-info">
+					<span class="multi-select-count" id="multiSelectCount">បានជ្រើសរើស: 0 ពុម្ព</span>
+					<span class="multi-select-clear" onclick="clearAllSelections()">✕ លុបការជ្រើសរើសទាំងអស់</span>
+				</div>
 			</div>
-			<button class="btn-multi-order" onclick="sendMultiOrder()">📥 កុម្ម៉ង់ពុម្ពអក្សរដែលបានរើស</button>
+			<div class="multi-actions-row">
+				<button class="btn-multi-compare" onclick="openCompareModal()">⚖️ ប្រៀបធៀប Font</button>
+				<button class="btn-multi-order" onclick="sendMultiOrder()">📥 កុម្ម៉ង់ពុម្ពអក្សរដែលបានរើស</button>
+			</div>
 		</div>
 
 		<div class="test-modal" id="fontTestModal">
 			<div class="modal-header">
 				<div class="modal-font-info">
 					<span class="modal-font-name" id="modalFontTitle">Toathmor Font</span>
-					<button class="btn-load-all-chars" onclick="loadAllSampleCharacters()">📋 បង្ហាញគំរូអក្សរទាំងអស់</button>
+					<button class="btn-load-all-chars" id="btnLoadSampleText" onclick="loadAllSampleCharacters()">📋 បង្ហាញគំរូអក្សរទាំងអស់</button>
 				</div>
 				<button class="modal-close-btn" onclick="closeTestModal()">✕</button>
 			</div>
@@ -992,17 +1095,13 @@
 			<div class="modal-controls-bar">
 				<div class="modal-ctrl-row">
 					<span class="picker-label-text">🎨 ពណ៌អក្សរ:</span>
-					
 					<div class="quick-colors-container">
 						<div class="custom-color-picker-wrapper">
 							<input type="color" id="textColorPicker" value="#0f172a" oninput="updateModalStyle()" />
 						</div>
-						
 						<div class="color-dot" style="background: #ffffff; border-color: #cbd5e1;" onclick="quickSelectColor('#ffffff')"></div>
 						<div class="color-dot" style="background: #000000;" onclick="quickSelectColor('#000000')"></div>
 						<div class="color-dot" style="background: #93c5fd;" onclick="quickSelectColor('#93c5fd')"></div>
-						<div class="color-dot" style="background: #22d3ee;" onclick="quickSelectColor('#22d3ee')"></div>
-						<div class="color-dot" style="background: #e879f9;" onclick="quickSelectColor('#e879f9')"></div>
 						<div class="color-dot" style="background: #facc15;" onclick="quickSelectColor('#facc15')"></div>
 						<div class="color-dot" style="background: #f87171;" onclick="quickSelectColor('#f87171')"></div>
 						<div class="color-dot" style="background: #4ade80;" onclick="quickSelectColor('#4ade80')"></div>
@@ -1017,13 +1116,13 @@
 				<div class="modal-slider-group">
 					<div class="modal-slider-item">
 						<span id="modalSizeLabel">ទំហំអក្សរ: 32px</span>
-						<input type="range" id="modalFontSizeSlider" min="16" max="80" value="26" oninput="updateModalStyle()" />
+						<input type="range" id="modalFontSizeSlider" min="16" max="80" value="28" oninput="updateModalStyle()" />
 					</div>
-					<div class="modal-slider-item">
+					<div class="modal-slider-item" id="modalLetterSliderGroup">
 						<span id="modalLetterLabel">ចន្លោះតួអក្សរ: 0px</span>
 						<input type="range" id="modalLetterSlider" min="-2" max="15" value="0" oninput="updateModalStyle()" />
 					</div>
-					<div class="modal-slider-item">
+					<div class="modal-slider-item" id="modalLineSliderGroup">
 						<span id="modalLineLabel">ចន្លោះជួរ: 1.6</span>
 						<input type="range" id="modalLineSlider" min="10" max="30" value="16" oninput="updateModalStyle()" />
 					</div>
@@ -1033,8 +1132,10 @@
 			<div class="modal-textarea-container" id="textareaContainer">
 				<textarea class="modal-textarea font-preview-text-zone" id="modalTextArea" placeholder="ចាប់ផ្តើមវាយអត្ថបទសាកល្បងទីនេះ..."></textarea>
 			</div>
+
+			<div class="compare-list-scroll" id="compareContainer" style="display: none;"></div>
 			
-			<div class="modal-footer-actions">
+			<div class="modal-footer-actions" id="modalFooterActions">
 				<button class="btn-save btn-image" onclick="exportToImage()">📸 រូបភាព</button>
 				<button class="btn-save btn-pdf" onclick="exportToPDF()">📄 PDF</button>
 				<button class="btn-save btn-share" onclick="shareContent()">🔗 ចែករំលែក</button>
@@ -1123,8 +1224,12 @@
 			let currentFontSize = 28;
 			let activeFontName = "";
 			let selectedFonts = [];
+			let favoriteFonts = JSON.parse(localStorage.getItem("toathmor_favorites")) || [];
+			let isCompareMode = false;
 
 			const allKhmerSampleText = `ក្ក ខ្ខ គ្គ ឃ្ឃ ង្ង​   ច្ច ឆ្ឆ ជ្ជ ឈ្ឈ ញ្ញ​ (ញ, ក្ញ)​\nដ្ដ ឋ្ឋ ឌ្ឌ ឍ្ឍ ណ្ណ​   ត្ត ថ្ថ ទ្ទ ធ្ធ ន្ន \nប្ប ផ្ផ ព្ព ភ្ភ ម្ម​ យ្យ រ្រ ល្ល វ្វ ឝ្ឝ ឞ្ឞ ស្ស ហ្ហ ឡ អ្អ\nអ អា ឥ ឦ ឧ ឨ ឩ ឪ ឫ ឬ ឭ ឮ ឯ ឰ ឱ ឲ ឳ\nកា កិ កី កឹ កឺ​ កុ កូ កួ​ កើ កឿ កៀ​ កេ កែ កៃ​ \nកោ កៅ​ ​កុំ កំ​ កះ កះ​ ក៉ ក៊ ក់ ក៌ ក៍ ក៎  ក៏ ក័ ក៑\n។៕៘ ៗ ៛៙៚០ ១ ២ ៣ ៤ ៥ ៦ ៧ ៨ ៩`;
+
+			const globalPdfUrl = "តារាងពុម្ពរអក្សរខ្មែរ_តោថ្ម.pdf";
 
 			const fontsData = [
 				{ name: "Toathmor Komaradthan", price: "$ 15", type: "moul" }, 
@@ -1243,6 +1348,15 @@
 				{ name: "Toathmor Aphiruh", price: "សាកល្បង", type: "chreang" }
 			];
 
+			fontsData.forEach((font, idx) => {
+				if (idx + 1 >= 112) font.isNew = true;
+			});
+
+			function convertKhmerToLatinNumbers(str) {
+				const khmerNums = {'០':'0','១':'1','២':'2','៣':'3','៤':'4','៥':'5','៦':'6','៧':'7','៨':'8','៩':'9'};
+				return str.replace(/[០-៩]/g, function(w) { return khmerNums[w]; });
+			}
+
 			function injectFontFace(fontName) {
 				const id = `font-face-${fontName.replace(/\s+/g, '-')}`;
 				if (!document.getElementById(id)) {
@@ -1258,10 +1372,6 @@
 					document.head.appendChild(styleEl);
 				}
 			}
-
-			fontsData.forEach((font, idx) => {
-				if (idx + 1 >= 112) font.isNew = true;
-			});
 
 			function handleImageError(imgElement) {
 				imgElement.style.display = 'none';
@@ -1292,6 +1402,14 @@
 
 					const isChecked = selectedFonts.some(f => f.index === originalIndex) ? "checked" : "";
 					const cardSelectedClass = isChecked ? "selected" : "";
+					
+					// ផ្លាស់ប្តូររូបតំណាង Pin 📍 (មិនទាន់ចុច) និង 📌 (ចុចរួច)
+					const isFav = favoriteFonts.includes(font.name);
+					const favIcon = isFav ? "📌" : "📍";
+					const favActiveClass = isFav ? "active" : "";
+
+					const targetPage = Math.ceil(originalIndex / 16) + 1; 
+					const pdfTargetUrl = `${globalPdfUrl}#page=${targetPage}`;
 
 					container.innerHTML += `
 						<div class="font-card ${cardSelectedClass}" id="${cardId}">
@@ -1307,7 +1425,8 @@
 										<div style="font-size:10px; color:var(--text-muted); margin-top:2px;">${typeLabel} ℹ️ ព័ត៌មាន</div>
 									</div>
 								</div>
-								<span class="font-price">${font.price}</span>
+								<button class="btn-fav ${favActiveClass}" onclick="toggleFavorite('${font.name}', this)" title="ខ្ទាស់ចំណាំទុក">${favIcon}</button>
+								<span class="font-price" style="margin-left: 8px;">${font.price}</span>
 							</div>
 
 							<div class="style-selector">
@@ -1322,10 +1441,12 @@
 								</div>
 							</div>
 
-							<div class="image-container">
-								<span class="image-error-text">កំពុងផ្ទុករូបភាព...</span>
-								<img class="font-image-sample" src="${imageUrl}" alt="គំរូពុម្ពអក្សរ ${font.name}" onerror="handleImageError(this)">
-							</div>
+							<a href="${pdfTargetUrl}" target="_blank" class="image-container-link" title="ចុចមើលក្នុង PDF ទំព័រទី ${targetPage}">
+								<div class="image-container">
+									<span class="image-error-text">កំពុងផ្ទុករូបភាព...</span>
+									<img class="font-image-sample" src="${imageUrl}" alt="គំរូពុម្ពអក្សរ ${font.name}" onerror="handleImageError(this)">
+								</div>
+							</a>
 
 							<div class="card-acts">
 								<button class="btn-action btn-secondary" onclick="copyName('${font.name}')">📋 ចម្លងឈ្មោះ</button>
@@ -1336,6 +1457,25 @@
 				});
 				document.body.style.cursor = "default";
 				document.getElementById("counterContainer").innerText = `បង្ហាញជូនចំនួន ${data.length} ពុម្ពអក្សរ`;
+			}
+
+			// មុខងារខ្ទាស់ពុម្ពអក្សរទុក
+			function toggleFavorite(fontName, btn) {
+				if (favoriteFonts.includes(fontName)) {
+					favoriteFonts = favoriteFonts.filter(name => name !== fontName);
+					btn.classList.remove("active");
+					btn.innerText = "📍";
+					showToast("✕ បានដកចេញពីបញ្ជីខ្ទាស់ទុក");
+				} else {
+					favoriteFonts.push(fontName);
+					btn.classList.add("active");
+					btn.innerText = "📌";
+					showToast("📌 បានខ្ទាស់ពុម្ពអក្សរនេះទុកហើយ");
+				}
+				localStorage.setItem("toathmor_favorites", JSON.stringify(favoriteFonts));
+				if (currentCategory === "favorite") {
+					filterData();
+				}
 			}
 
 			function openInfoPopup(index) {
@@ -1357,72 +1497,35 @@
 			}
 
 			function toggleSelectFont(index, name, checkboxEl) {
-
 				const card = document.getElementById(`font-${index}`);
 				const fontData = fontsData[index - 1];
-
 				let cleanPrice = 0;
 
 				if (fontData.price.includes("$")) {
-					cleanPrice = parseFloat(
-					fontData.price.replace("$", "").trim()
-					) || 0;
+					cleanPrice = parseFloat(fontData.price.replace("$", "").trim()) || 0;
 				}
 
 				if (checkboxEl.checked) {
-
 					if (!selectedFonts.some(f => f.index === index)) {
-
-					selectedFonts.push({
-						index,
-						name,
-						price: cleanPrice
-					});
-
+						selectedFonts.push({ index, name, price: cleanPrice });
 					}
-
-					if (card) {
-					card.classList.add("selected");
-					}
-
+					if (card) card.classList.add("selected");
 				} else {
-
-					selectedFonts = selectedFonts.filter(
-					f => f.index !== index
-					);
-
-					if (card) {
-					card.classList.remove("selected");
-					}
+					selectedFonts = selectedFonts.filter(f => f.index !== index);
+					if (card) card.classList.remove("selected");
 				}
-
 				updateMultiSelectBar();
 			}
 
 			function updateMultiSelectBar() {
-
-				const bar =
-					document.getElementById("multiSelectBar");
-
-				const countTxt =
-					document.getElementById("multiSelectCount");
-
-				let totalPrice = selectedFonts.reduce(
-					(sum, item) => sum + item.price,
-					0
-				);
+				const bar = document.getElementById("multiSelectBar");
+				const countTxt = document.getElementById("multiSelectCount");
+				let totalPrice = selectedFonts.reduce((sum, item) => sum + item.price, 0);
 
 				if (selectedFonts.length > 0) {
-
-					countTxt.innerHTML =
-					`បានជ្រើសរើស ${selectedFonts.length} ពុម្ព
-					<br>
-					💰 សរុប: $${totalPrice}`;
-
+					countTxt.innerHTML = `បានជ្រើសរើស ${selectedFonts.length} ពុម្ព | 💰 សរុប: $${totalPrice}`;
 					bar.classList.add("show");
-
 				} else {
-
 					bar.classList.remove("show");
 				}
 			}
@@ -1443,19 +1546,73 @@
 					fontDetails += `${i + 1}. #${font.index} - ${font.name}\n`;
 				});
 
-				const msg = `ជម្រាបសួរលោក យ៉ុង យាង! ខ្ញុំចាប់អារម្មណ៍ និងចង់កុម្ម៉ង់ទិញពុម្ពអក្សរចំនួន ${selectedFonts.length} ម៉ូដដូចខាងក្រោម៖\n\n${fontDetails}\nសូមជួយពិនិត្យ និងបញ្ជាក់តម្លៃបន្ថែមផងបាទ/ចាស!`;
-				
+				const msg = `ជម្រាបសួរលោក យ៉ុង យាង! ខ្ញុំចាប់អារម្មណ៍ និងចង់កុម្ម៉ង់ទិញពុម្ពអក្សរចំនួន ${selectedFonts.length} ម៉ូដដូចខាងក្រោម៖\n\n${fontDetails}\nសូមជួយពិនិត្យ និងបញ្ជាក់បន្ថែមផងបាទ/ចាស!`;
 				const tgUrl = `https://t.me/${telegramUser}?text=${encodeURIComponent(msg)}`;
 				window.open(tgUrl, '_blank');
 			}
 
+			function openCompareModal() {
+				if (selectedFonts.length < 2) {
+					alert("សូមជ្រើសរើស Font យ៉ាងតិច ២ ម៉ូដដើម្បីប្រៀបធៀប!");
+					return;
+				}
+				isCompareMode = true;
+				const modal = document.getElementById("fontTestModal");
+				document.getElementById("modalFontTitle").innerText = `⚖️ ប្រៀបធៀបពុម្ពអក្សរ (${selectedFonts.length})`;
+				
+				document.getElementById("modalLetterSliderGroup").style.display = "none";
+				document.getElementById("modalLineSliderGroup").style.display = "none";
+				document.getElementById("btnLoadSampleText").style.display = "none";
+				document.getElementById("textareaContainer").style.display = "none";
+				document.getElementById("modalFooterActions").style.display = "none"; 
+				
+				const compareContainer = document.getElementById("compareContainer");
+				compareContainer.style.display = "flex";
+				compareContainer.innerHTML = `
+					<div class="input-box" data-icon="✍️" style="margin-bottom:8px;">
+						<input type="text" id="compareInputGlobal" value="${document.getElementById("previewInput").value || 'តោថ្ម ហ្វុន TOATHMOR'}" placeholder="វាយអត្ថបទសាកល្បងប្រៀបធៀបទីនេះ..." oninput="updateCompareOutputs(this.value)" style="box-shadow:none; border-color:var(--accent);">
+					</div>
+				`;
+
+				selectedFonts.forEach(font => {
+					injectFontFace(font.name);
+					compareContainer.innerHTML += `
+						<div class="compare-row-card">
+							<div class="compare-font-meta">
+								<span>#${font.index} - ${font.name}</span>
+								<span style="color:var(--accent);">${fontsData[font.index-1].price}</span>
+							</div>
+							<div class="compare-preview-output" style="font-family:'${font.name}', sans-serif !important; font-size:${document.getElementById("modalFontSizeSlider").value}px;">
+								${document.getElementById("previewInput").value || 'តោថ្ម ហ្វុន TOATHMOR'}
+							</div>
+						</div>
+					`;
+				});
+
+				modal.style.display = "flex";
+			}
+
+			function updateCompareOutputs(text) {
+				document.querySelectorAll(".compare-preview-output").forEach(el => {
+					el.innerText = text || " ";
+				});
+			}
+
 			function openTestModal(fontName, fontNum) {
+				isCompareMode = false;
 				activeFontName = fontName;
 				injectFontFace(fontName);
 
 				const modal = document.getElementById("fontTestModal");
 				document.getElementById("modalFontTitle").innerText = `#${fontNum} - ${fontName}`;
 				
+				document.getElementById("modalLetterSliderGroup").style.display = "flex";
+				document.getElementById("modalLineSliderGroup").style.display = "flex";
+				document.getElementById("btnLoadSampleText").style.display = "inline-block";
+				document.getElementById("textareaContainer").style.display = "flex";
+				document.getElementById("compareContainer").style.display = "none";
+				document.getElementById("modalFooterActions").style.display = "flex";
+
 				const isDark = document.documentElement.getAttribute("data-theme") === "dark";
 				const defaultTxtColor = isDark ? "#f8fafc" : "#0f172a";
 				const defaultBgColor = isDark ? "#131a26" : "#ffffff";
@@ -1467,7 +1624,7 @@
 				txArea.style.setProperty("font-family", `"${fontName}", sans-serif`, "important");
 				txArea.value = document.getElementById("previewInput").value || allKhmerSampleText; 
 				
-				document.getElementById("modalFontSizeSlider").value = 26;
+				document.getElementById("modalFontSizeSlider").value = 28;
 				document.getElementById("modalLetterSlider").value = 0;
 				document.getElementById("modalLineSlider").value = 16;
 
@@ -1494,13 +1651,25 @@
 
 			function updateModalStyle() {
 				const size = document.getElementById("modalFontSizeSlider").value;
-				const letterSpace = document.getElementById("modalLetterSlider").value;
-				const lineHeightVal = document.getElementById("modalLineSlider").value / 10;
+				document.getElementById("modalSizeLabel").innerText = `ទំហំអក្សរ: ${size}px`;
 				
 				const txtColor = document.getElementById("textColorPicker").value;
 				const bgColor = document.getElementById("bgColorPicker").value;
+
+				if (isCompareMode) {
+					document.querySelectorAll(".compare-preview-output").forEach(el => {
+						el.style.fontSize = size + "px";
+						el.style.color = txtColor;
+					});
+					document.querySelectorAll(".compare-row-card").forEach(card => {
+						card.style.backgroundColor = bgColor;
+					});
+					return;
+				}
+
+				const letterSpace = document.getElementById("modalLetterSlider").value;
+				const lineHeightVal = document.getElementById("modalLineSlider").value / 10;
 				
-				document.getElementById("modalSizeLabel").innerText = `ទំហំអក្សរ: ${size}px`;
 				document.getElementById("modalLetterLabel").innerText = `ចន្លោះតួអក្សរ: ${letterSpace}px`;
 				document.getElementById("modalLineLabel").innerText = `ចន្លោះជួរ: ${lineHeightVal}`;
 
@@ -1544,6 +1713,7 @@
 			}
 
 			function exportToImage() {
+				if(isCompareMode) return;
 				const renderDiv = generateRenderElement();
 				const bgColor = document.getElementById("bgColorPicker").value;
 
@@ -1564,6 +1734,7 @@
 			}
 
 			function exportToPDF() {
+				if(isCompareMode) return;
 				const renderDiv = generateRenderElement();
 				const bgColor = document.getElementById("bgColorPicker").value;
 
@@ -1651,9 +1822,25 @@
 			}
 
 			function filterData() {
-				const searchVal = document.getElementById("searchId").value.toLowerCase();
-				const filtered = fontsData.filter((font) => {
-					return font.name.toLowerCase().includes(searchVal) && (currentCategory === "all" || font.type === currentCategory);
+				let searchVal = document.getElementById("searchId").value.trim().toLowerCase();
+				searchVal = convertKhmerToLatinNumbers(searchVal);
+				const cleanNumSearch = searchVal.replace('#', ''); 
+
+				const filtered = fontsData.filter((font, index) => {
+					const fontNumString = (index + 1).toString();
+					const matchesSearch = font.name.toLowerCase().includes(searchVal) || 
+					                      fontNumString === cleanNumSearch;
+
+					let matchesCategory = false;
+					if (currentCategory === "all") {
+						matchesCategory = true;
+					} else if (currentCategory === "favorite") {
+						matchesCategory = favoriteFonts.includes(font.name);
+					} else {
+						matchesCategory = (font.type === currentCategory);
+					}
+					
+					return matchesSearch && matchesCategory;
 				});
 				renderFonts(filtered);
 			}
